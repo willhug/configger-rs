@@ -1,8 +1,11 @@
-use proc_macro::TokenStream;
+pub use configger_derive::*;
 
-#[proc_macro_derive(ConfiggerData, attributes(configger))]
-pub fn configger(item: TokenStream) -> TokenStream {
-    println!("item: \"{}\"", item);
-    // TODO figure this out.
-    "".parse().unwrap()
+pub struct ConfiggerField {
+    pub name: &'static str,
+    // pub ty: &'static str, // TODO Syn type?
+    pub require_on_create: bool,
+}
+
+pub trait ConfiggerData {
+    fn fields() -> Vec<ConfiggerField>;
 }
