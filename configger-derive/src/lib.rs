@@ -41,8 +41,9 @@ fn field_definition(field: &Field) -> TokenStream {
     let require_on_create = parse_attrs(&field.attrs).iter().any(|a| match a {
         ConfiggerFieldAttr::RequireOnCreate(_) => true,
     });
+    // TODO check if the field is a node field.
     quote! {
-        ConfiggerField {
+        ConfiggerField::Leaf {
             name: #name,
             // ty: "String", // TODO Syn type?
             require_on_create: #require_on_create,

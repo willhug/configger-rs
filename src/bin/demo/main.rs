@@ -1,8 +1,6 @@
-mod auto;
+#[allow(dead_code, unused_imports)]
 mod manual;
 
 fn main() {
-    println!("Hello, world!");
     manual::demo();
-    auto::demo();
 }
